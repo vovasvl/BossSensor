@@ -4,12 +4,12 @@ import random
 
 import numpy as np
 from sklearn.model_selection import train_test_split
-from keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Conv2D, MaxPooling2D
 from keras.optimizers import SGD
-from keras.utils import np_utils
+from tensorflow.keras.utils import to_categorical
 from keras.models import load_model
 from keras import backend as K
 
@@ -47,9 +47,9 @@ class Dataset(object):
         print(X_valid.shape[0], 'valid samples')
         print(X_test.shape[0], 'test samples')
 
-        Y_train = np_utils.to_categorical(y_train, nb_classes)
-        Y_valid = np_utils.to_categorical(y_valid, nb_classes)
-        Y_test = np_utils.to_categorical(y_test, nb_classes)
+        Y_train = to_categorical(y_train, nb_classes)
+        Y_valid = to_categorical(y_valid, nb_classes)
+        Y_test = to_categorical(y_test, nb_classes)
 
         X_train = X_train.astype('float32')
         X_valid = X_valid.astype('float32')
